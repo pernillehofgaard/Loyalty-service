@@ -1,0 +1,7 @@
+{
+  "name": "ice-loyalty-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
