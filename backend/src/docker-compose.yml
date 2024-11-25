@@ -1,0 +1,6 @@
+﻿services:
+  loyaltyservice:
+    image: loyaltyservice
+    build:
+      context: .
+      dockerfile: LoyaltyService/Dockerfile

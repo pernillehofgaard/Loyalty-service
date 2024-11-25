@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  loyaltyservice:
+    build:
+      context: "D:\\Hackaton\\FamilyGuys\\Loyalty-service\\backend\\src"
+      dockerfile: "LoyaltyService/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/LoyaltyService.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "loyaltyservice:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\kaifre\\.nuget\\packages:/home/app/.nuget/packages"
+    - "D:\\Hackaton\\FamilyGuys\\Loyalty-service\\backend\\src\\LoyaltyService:/app:rw"
+    - "D:\\Hackaton\\FamilyGuys\\Loyalty-service\\backend\\src:/src:rw"
+    working_dir: "/app"
