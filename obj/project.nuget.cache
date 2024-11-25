@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oowN+jA43B0=",
+  "dgSpecHash": "P0i8pCtL0TM=",
   "success": true,
-  "projectFilePath": "D:\\Hackaton\\2024\\FamilyGuys\\Loyalty-service\\loyalty-service.api.csproj",
+  "projectFilePath": "D:\\Hackaton\\2024\\FamilyGuys\\Loyalty-service\\LoyaltyService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kaifre\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\kaifre\\.nuget\\packages\\microsoft.openapi\\1.6.22\\microsoft.openapi.1.6.22.nupkg.sha512",
