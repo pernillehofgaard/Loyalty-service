@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "iBGjNzMz2KDZAurroMEXWOZNsQvFTaNRZSwlllE80JGVfXMnBEeXyFBrYgXuwV7RIA1PT8dJRiFEPzB+9T55Wg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\perhof\\source\\repos\\Loyalty-service\\loyalty-service.api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\perhof\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\perhof\\.nuget\\packages\\microsoft.openapi\\1.6.22\\microsoft.openapi.1.6.22.nupkg.sha512",
+    "C:\\Users\\perhof\\.nuget\\packages\\swashbuckle.aspnetcore\\7.1.0\\swashbuckle.aspnetcore.7.1.0.nupkg.sha512",
+    "C:\\Users\\perhof\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\7.1.0\\swashbuckle.aspnetcore.swagger.7.1.0.nupkg.sha512",
+    "C:\\Users\\perhof\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\7.1.0\\swashbuckle.aspnetcore.swaggergen.7.1.0.nupkg.sha512",
+    "C:\\Users\\perhof\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\7.1.0\\swashbuckle.aspnetcore.swaggerui.7.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
