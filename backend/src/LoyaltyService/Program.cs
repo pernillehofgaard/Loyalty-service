@@ -1,10 +1,16 @@
+using LoyaltyService.Application.GetFamily;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+// Register MediatR
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(c => 
 {
     c.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
@@ -38,29 +44,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/families/{id}", () =>
+app.MapGet("/families/{id}", async ([FromRoute] int id, IMediator mediator)  =>
     {
-        var iceCash = Enumerable.Range(1, 5).Select(index =>
-                new IceCash
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return iceCash;
+        var getFamily = new GetFamily
+        {
+            Id = id.ToString()
+        };
+        var response = await mediator.Send(getFamily);
+        return Results.Ok(response);
     })
     .WithName("GetFamilyById")
     .WithOpenApi();
 
 app.Run();
-
-record IceCash(DateOnly Date, int Coin, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(Coin / 0.5556);
-}
