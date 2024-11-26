@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
 using LoyaltyService.Application.GetFamily;
+using LoyaltyService.Infrastructure;
+using LoyaltyService.Settings;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +14,8 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
+builder.Services.Configure<CosmosDbSettings>(builder.Configuration.GetSection("CosmosDbSettings"));
+builder.Services.AddSingleton<IFamilyRepository, CosmosDb>();
 builder.Services.AddSwaggerGen(c => 
 {
     c.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
@@ -48,6 +47,8 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();  
     });  
 });
+
+builder.Services.AddSingleton<IFamilyRepository, CosmosDb>();
 
 var app = builder.Build();
 
