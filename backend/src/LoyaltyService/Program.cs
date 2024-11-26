@@ -43,9 +43,9 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/families", () =>
+app.MapGet("/families/{id}", () =>
     {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
+        var iceCash = Enumerable.Range(1, 5).Select(index =>
                 new IceCash
                 (
                     DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -53,9 +53,9 @@ app.MapGet("/families", () =>
                     summaries[Random.Shared.Next(summaries.Length)]
                 ))
             .ToArray();
-        return forecast;
+        return iceCash;
     })
-    .WithName("GetFamilies")
+    .WithName("GetFamilyById")
     .WithOpenApi();
 
 app.Run();
