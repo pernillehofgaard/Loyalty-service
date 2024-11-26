@@ -1,3 +1,5 @@
+using System;
+
 namespace LoyaltyService.Domain
 {
     public class IcePointsReward
