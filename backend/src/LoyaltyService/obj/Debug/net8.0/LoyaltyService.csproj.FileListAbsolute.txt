@@ -101,3 +101,5 @@ C:\Users\perhof\source\repos\Loyalty-service\backend\src\LoyaltyService\obj\Debu
 C:\Users\perhof\source\repos\Loyalty-service\backend\src\LoyaltyService\obj\Debug\net8.0\ref\LoyaltyService.dll
 C:\Users\perhof\source\repos\Loyalty-service\backend\src\LoyaltyService\bin\Debug\net8.0\MediatR.dll
 C:\Users\perhof\source\repos\Loyalty-service\backend\src\LoyaltyService\bin\Debug\net8.0\MediatR.Contracts.dll
+D:\Hackaton\FamilyGuys\Loyalty-service\backend\src\LoyaltyService\bin\Debug\net8.0\MediatR.dll
+D:\Hackaton\FamilyGuys\Loyalty-service\backend\src\LoyaltyService\bin\Debug\net8.0\MediatR.Contracts.dll
