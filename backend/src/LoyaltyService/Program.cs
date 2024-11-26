@@ -60,11 +60,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/families/{id}", async ([FromRoute] int id, IMediator mediator)  =>
+app.MapGet("/families/{id}", async ([FromRoute] string id, IMediator mediator)  =>
     {
         var getFamily = new GetFamily
         {
-            Id = id.ToString()
+            Id = id
         };
         var response = await mediator.Send(getFamily);
         return Results.Ok(response);
@@ -73,11 +73,11 @@ app.MapGet("/families/{id}", async ([FromRoute] int id, IMediator mediator)  =>
     .WithOpenApi();
 
 
-app.MapGet("/Rewards/{familyId}", async ([FromRoute] int familyId, IMediator mediator) =>
+app.MapGet("/Rewards/{familyId}", async ([FromRoute] string familyId, IMediator mediator) =>
     {
         var getFamily = new GetFamily
         {
-            Id = familyId.ToString()
+            Id = familyId
         };
         var response = await mediator.Send(getFamily);
         var awards = response.Rewards;
@@ -86,11 +86,11 @@ app.MapGet("/Rewards/{familyId}", async ([FromRoute] int familyId, IMediator med
     .WithName("GetActiveRewardByFamilyId")
     .WithOpenApi();
 
-app.MapGet("/IceCash/{familyId}", async ([FromRoute] int familyId, IMediator mediator) =>
+app.MapGet("/IceCash/{familyId}", async ([FromRoute] string familyId, IMediator mediator) =>
     {
         var getFamily = new GetFamily
         {
-            Id = familyId.ToString()
+            Id = familyId
         };
         var response = await mediator.Send(getFamily);
         var iceCash = response.Rewards.IceCash;
@@ -99,11 +99,11 @@ app.MapGet("/IceCash/{familyId}", async ([FromRoute] int familyId, IMediator med
     .WithName("GetIceCash")
     .WithOpenApi();
 
-app.MapGet("/FamilyMembers/{familyId}", async ([FromRoute] int familyId, IMediator mediator) =>
+app.MapGet("/FamilyMembers/{familyId}", async ([FromRoute] string familyId, IMediator mediator) =>
     {
         var getFamily = new GetFamily
         {
-            Id = familyId.ToString()
+            Id = familyId
         };
         var response = await mediator.Send(getFamily);
         var familyMembers = response.Members;
