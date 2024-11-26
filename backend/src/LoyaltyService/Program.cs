@@ -1,6 +1,4 @@
 using LoyaltyService.Application.GetFamily;
-using LoyaltyService.Infrastructure;
-using LoyaltyService.Settings;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
@@ -12,8 +10,6 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.Configure<CosmosDbSettings>(builder.Configuration.GetSection("CosmosDbSettings"));
-builder.Services.AddSingleton<IFamilyRepository, CosmosDb>();
 
 builder.Services.AddSwaggerGen(c => 
 {
@@ -48,7 +44,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/families/{id}", async ([FromRoute] string id, IMediator mediator)  =>
+app.MapGet("/families/{id}", async ([FromRoute] int id, IMediator mediator)  =>
     {
         var getFamily = new GetFamily
         {
@@ -58,6 +54,46 @@ app.MapGet("/families/{id}", async ([FromRoute] string id, IMediator mediator)  
         return Results.Ok(response);
     })
     .WithName("GetFamilyById")
+    .WithOpenApi();
+
+
+app.MapGet("/Rewards/{familyId}", async ([FromRoute] int familyId, IMediator mediator) =>
+    {
+        var getFamily = new GetFamily
+        {
+            Id = familyId.ToString()
+        };
+        var response = await mediator.Send(getFamily);
+        var awards = response.Rewards;
+        return Results.Ok(awards);
+    })
+    .WithName("GetActiveRewardByFamilyId")
+    .WithOpenApi();
+
+app.MapGet("/IceCash/{familyId}", async ([FromRoute] int familyId, IMediator mediator) =>
+    {
+        var getFamily = new GetFamily
+        {
+            Id = familyId.ToString()
+        };
+        var response = await mediator.Send(getFamily);
+        var iceCash = response.Rewards.IceCash;
+        return Results.Ok(iceCash);
+    })
+    .WithName("GetIceCash")
+    .WithOpenApi();
+
+app.MapGet("/FamilyMembers/{familyId}", async ([FromRoute] int familyId, IMediator mediator) =>
+    {
+        var getFamily = new GetFamily
+        {
+            Id = familyId.ToString()
+        };
+        var response = await mediator.Send(getFamily);
+        var familyMembers = response.Members;
+        return Results.Ok(familyMembers);
+    })
+    .WithName("GetIceCash")
     .WithOpenApi();
 
 app.Run();
