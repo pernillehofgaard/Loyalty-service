@@ -16,6 +16,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.Configure<CosmosDbSettings>(builder.Configuration.GetSection("CosmosDbSettings"));
 builder.Services.AddSingleton<IFamilyRepository, CosmosDb>();
+//adding basic auth
 builder.Services.AddSwaggerGen(c => 
 {
     c.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
