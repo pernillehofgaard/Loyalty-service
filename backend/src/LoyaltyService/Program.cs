@@ -1,99 +1,56 @@
-using LoyaltyService.Application.GetFamily;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
-
-var builder = WebApplication.CreateBuilder(args);
-// Register MediatR
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddSwaggerGen(c => 
-{
-    c.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
-    {
-        Description = "Basic auth added to authorization header",
-        Name = "Autorization",
-        In = ParameterLocation.Header,
-        Scheme = "basic",
-        Type = SecuritySchemeType.Http
-    });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Basic" }
-            },
-            new List<string>()
-        }
-    });
-});
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+var builder = WebApplication.CreateBuilder(args);  
+  
+// Add services to the container.  
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle  
+builder.Services.AddEndpointsApiExplorer();  
+builder.Services.AddSwaggerGen();  
+  
+builder.Services.AddCors(options =>  
+{  
+    options.AddPolicy("AllowFrontend", policy =>  
+    {  
+        policy.WithOrigins("http://localhost:8100") // Replace with your frontend's origin  
+            .AllowAnyHeader()  
+            .AllowAnyMethod();  
+    });  
+});  
+  
+var app = builder.Build();  
+  
+// Configure the HTTP request pipeline.  
+if (app.Environment.IsDevelopment())  
+{  
+    app.UseSwagger();  
+    app.UseSwaggerUI();  
+}  
+  
+app.UseCors("AllowFrontend");  
+  
+app.UseHttpsRedirection();  
+  
+var summaries = new[]  
+{  
+    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"  
+};  
+  
+app.MapGet("/families", () =>  
+    {  
+        var forecast = Enumerable.Range(1, 5).Select(index =>  
+                new IceCash  
+                (  
+                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),  
+                    Random.Shared.Next(-20, 55),  
+                    summaries[Random.Shared.Next(summaries.Length)]  
+                ))  
+            .ToArray();  
+        return forecast;  
+    })  
+    .WithName("GetFamilies")  
+    .WithOpenApi();  
+  
+app.Run();  
+  
+record IceCash(DateOnly Date, int Coin, string? Summary)  
+{  
+    public int TemperatureF => 32 + (int)(Coin / 0.5556);  
 }
-
-app.UseHttpsRedirection();
-
-app.MapGet("/families/{id}", async ([FromRoute] int id, IMediator mediator)  =>
-    {
-        var getFamily = new GetFamily
-        {
-            Id = id.ToString()
-        };
-        var response = await mediator.Send(getFamily);
-        return Results.Ok(response);
-    })
-    .WithName("GetFamilyById")
-    .WithOpenApi();
-
-
-app.MapGet("/Rewards/{familyId}", async ([FromRoute] int familyId, IMediator mediator) =>
-    {
-        var getFamily = new GetFamily
-        {
-            Id = familyId.ToString()
-        };
-        var response = await mediator.Send(getFamily);
-        var awards = response.Rewards;
-        return Results.Ok(awards);
-    })
-    .WithName("GetActiveRewardByFamilyId")
-    .WithOpenApi();
-
-app.MapGet("/IceCash/{familyId}", async ([FromRoute] int familyId, IMediator mediator) =>
-    {
-        var getFamily = new GetFamily
-        {
-            Id = familyId.ToString()
-        };
-        var response = await mediator.Send(getFamily);
-        var iceCash = response.Rewards.IceCash;
-        return Results.Ok(iceCash);
-    })
-    .WithName("GetIceCash")
-    .WithOpenApi();
-
-app.MapGet("/FamilyMembers/{familyId}", async ([FromRoute] int familyId, IMediator mediator) =>
-    {
-        var getFamily = new GetFamily
-        {
-            Id = familyId.ToString()
-        };
-        var response = await mediator.Send(getFamily);
-        var familyMembers = response.Members;
-        return Results.Ok(familyMembers);
-    })
-    .WithName("GetIceCash")
-    .WithOpenApi();
-
-app.Run();
