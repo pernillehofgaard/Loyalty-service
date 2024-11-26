@@ -39,6 +39,16 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddCors(options =>  
+{  
+    options.AddPolicy("AllowFrontend", policy =>  
+    {  
+        policy.WithOrigins("http://localhost:8100") // Replace with your frontend's origin  
+            .AllowAnyHeader()  
+            .AllowAnyMethod();  
+    });  
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
