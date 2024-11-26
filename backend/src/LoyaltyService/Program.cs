@@ -109,7 +109,7 @@ app.MapGet("/FamilyMembers/{familyId}", async ([FromRoute] int familyId, IMediat
         var familyMembers = response.Members;
         return Results.Ok(familyMembers);
     })
-    .WithName("GetIceCash")
+    .WithName("GetFamilyMembers")
     .WithOpenApi();
 
 app.Run();
