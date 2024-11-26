@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Hackaton\\FamilyGuys\\Loyalty-service\\backend\\src\\LoyaltyService\\LoyaltyService.csproj": {}
+    "C:\\Users\\perhof\\source\\repos\\Loyalty-service\\backend\\src\\LoyaltyService\\LoyaltyService.csproj": {}
   },
   "projects": {
-    "D:\\Hackaton\\FamilyGuys\\Loyalty-service\\backend\\src\\LoyaltyService\\LoyaltyService.csproj": {
+    "C:\\Users\\perhof\\source\\repos\\Loyalty-service\\backend\\src\\LoyaltyService\\LoyaltyService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Hackaton\\FamilyGuys\\Loyalty-service\\backend\\src\\LoyaltyService\\LoyaltyService.csproj",
+        "projectUniqueName": "C:\\Users\\perhof\\source\\repos\\Loyalty-service\\backend\\src\\LoyaltyService\\LoyaltyService.csproj",
         "projectName": "LoyaltyService",
-        "projectPath": "D:\\Hackaton\\FamilyGuys\\Loyalty-service\\backend\\src\\LoyaltyService\\LoyaltyService.csproj",
-        "packagesPath": "C:\\Users\\kaifre\\.nuget\\packages\\",
-        "outputPath": "D:\\Hackaton\\FamilyGuys\\Loyalty-service\\backend\\src\\LoyaltyService\\obj\\",
+        "projectPath": "C:\\Users\\perhof\\source\\repos\\Loyalty-service\\backend\\src\\LoyaltyService\\LoyaltyService.csproj",
+        "packagesPath": "C:\\Users\\perhof\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\perhof\\source\\repos\\Loyalty-service\\backend\\src\\LoyaltyService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kaifre\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\perhof\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -71,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
